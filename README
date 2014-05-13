@@ -9,3 +9,9 @@ Jonathan Pearson
 Resources used:
 Python 2.7
 Opencv
+
+TODO:
+Blob detection
+Blob tracking in and out of frame
+Background Subtraction
+Video HOG detector if possible
