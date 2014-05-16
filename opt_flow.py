@@ -15,6 +15,7 @@ Keys:
 
 '''
 
+
 def draw_flow(img, flow, step=16):
     h, w = img.shape[:2]
     y, x = np.mgrid[step/2:h:step, step/2:w:step].reshape(2,-1)
@@ -54,9 +55,10 @@ if __name__ == '__main__':
     except: fn = 0
 
     #cam = video.create_capture(fn)
-    cam = 
-    
+    cam = Stream()
+    cam.read()
     ret, prev = cam.read()
+    print prev
     prevgray = cv2.cvtColor(prev, cv2.COLOR_BGR2GRAY)
     show_hsv = False
     show_glitch = False
@@ -88,8 +90,3 @@ if __name__ == '__main__':
             print 'glitch is', ['off', 'on'][show_glitch]
     cv2.destroyAllWindows()
 
-class stream():
-    def __init__(self):
-        self.stream=urllib.urlopen('http://subway-cam.rose-hulman.edu/stream.jpg')
-        bytes = ''
-    def read(self):
