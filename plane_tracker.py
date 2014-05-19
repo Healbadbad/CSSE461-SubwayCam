@@ -24,6 +24,7 @@ Select a textured planar object to track by drawing a box with a mouse.
 import numpy as np
 import cv2
 from collections import namedtuple
+import Streamer
 #import video
 #import common
 
@@ -126,13 +127,14 @@ class PlaneTracker:
 
 class App:
     def __init__(self, src):
-        self.cap = video.create_capture(src)
+        self.cap = Streamer.Streamer()
         self.frame = None
         self.paused = False
         self.tracker = PlaneTracker()
 
         cv2.namedWindow('plane')
-        self.rect_sel = common.RectSelector('plane', self.on_rect)
+        #self.rect_sel = common.RectSelector('plane', self.on_rect)
+        #self.rect_sel = cv2.
 
     def on_rect(self, rect):
         self.tracker.add_target(self.frame, rect)

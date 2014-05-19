@@ -3,7 +3,7 @@
 import numpy as np
 import cv2
 import urllib 
-
+import Streamer
 #import video
 
 help_message = '''
@@ -55,7 +55,8 @@ if __name__ == '__main__':
     except: fn = 0
 
     #cam = video.create_capture(fn)
-    cam = Stream()
+    #cam = Streamer.Streamer()
+    cam = cv2.VideoCapture('output.avi')
     cam.read()
     ret, prev = cam.read()
     print prev
