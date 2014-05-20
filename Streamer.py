@@ -12,17 +12,21 @@ class Streamer():
         #print a,b
         
     def read(self):
-        i = ''
-        self.jpg = '';
-        self.bytes+=self.stream.read(35628)
-        #print self.bytes
-        a = self.bytes.find('\xff\xd8')
-        b = self.bytes.find('\xff\xd9')
-        if a!=-1 and b!=-1:
-            #print 'found the image in the stream'
-            self.jpg = self.bytes[a:b+2]
-            self.bytes= self.bytes[b+2:]
-        i = cv2.imdecode(np.fromstring(self.jpg, dtype=np.uint8),cv2.CV_LOAD_IMAGE_COLOR)
+        count =0
+        while(count < 10):
+            i = ''
+            self.jpg = '';
+            self.bytes+=self.stream.read(35628)
+            #print self.bytes
+            a = self.bytes.find('\xff\xd8')
+            b = self.bytes.find('\xff\xd9')
+            if a!=-1 and b!=-1:
+                #print 'found the image in the stream'
+                self.jpg = self.bytes[a:b+2]
+                self.bytes= self.bytes[b+2:]
+            i = cv2.imdecode(np.fromstring(self.jpg, dtype=np.uint8),cv2.CV_LOAD_IMAGE_COLOR)
+            if(i!=None):
+                break
         return 1,i
             #cv2.imshow('i',i)
             #if cv2.waitKey(1) ==27:

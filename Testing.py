@@ -24,14 +24,14 @@ while(True):
     color = [(255,0,0),(0,255,0),(0,0,255)]
     
     for item,col in zip([b,g,r],color):
-        hist_item = cv2.calcHist([item],[0],None,[640],[0,255])
+        hist_item = cv2.calcHist([item],[0],None,[640],[0,256])
         cv2.normalize(hist_item,hist_item,0,480,cv2.NORM_MINMAX)
         hist = np.int32(np.around(hist_item))
         pts = np.column_stack((bins,hist))
         cv2.polylines(hists,[pts],False,col)
     hists=np.flipud(hists)
     
-    flow = cv2.calcOpticalFlowFarneback(gray2,gray,0.5,1,3,15,3,5,1)
+    #flow = cv2.calcOpticalFlowFarneback(gray2,gray,0.5,1,3,15,3,5,1)
     try:
         #cv2.cv.Copy(gray,blank_image)
         canvas[:480,:640] = frame
@@ -40,9 +40,10 @@ while(True):
         pass
     except:
         pass
+    
     # Display the resulting frame
     cv2.imshow('frame',canvas)
-    cv2.imshow('optflow',flow)
+    #cv2.imshow('optflow',flow)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
     #cv2.cv.Copy(frame, frame_old)
@@ -50,3 +51,4 @@ while(True):
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
+print pts[51]

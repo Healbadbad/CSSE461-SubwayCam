@@ -38,7 +38,8 @@ def draw_hsv(flow):
     hsv[...,1] = 255
     hsv[...,2] = np.minimum(v*4, 255)
     bgr = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR)
-    return bgr
+    ret,thresh1 = cv2.threshold(bgr,10,255,cv2.THRESH_BINARY)
+    return thresh1
 
 def warp_flow(img, flow):
     h, w = flow.shape[:2]
@@ -57,6 +58,7 @@ if __name__ == '__main__':
     #cam = video.create_capture(fn)
     #cam = Streamer.Streamer()
     cam = cv2.VideoCapture('output.avi')
+    #cam = Streamer.Streamer()
     cam.read()
     ret, prev = cam.read()
     print prev
