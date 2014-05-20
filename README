@@ -10,8 +10,19 @@ Resources used:
 Python 2.7
 Opencv
 
+Progress:
+Healbadbad
+<r>
+Stable Subway Cam stream
+Stream recording
+image Stitching 
+Histograms
+Set up many opencv example files
+explored many methods of background subtraction
+Abandoning Background subtraction
+
+
 TODO:
-Blob detection
-Blob tracking in and out of frame
-Background Subtraction
-Video HOG detector if possible
+HOGDetector on video
+Svm on video
+Optical flow and tracking
